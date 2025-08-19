@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { runBenchmark, BenchConfig, BenchResultView } from "./bench";
 
 export function activate(context: vscode.ExtensionContext) {
+  // Register the dashboard command
   const disposable = vscode.commands.registerCommand("benchbuddy.openDashboard", () => {
     const panel = vscode.window.createWebviewPanel(
       "benchbuddy",
@@ -17,7 +18,6 @@ export function activate(context: vscode.ExtensionContext) {
       if (msg?.type === "run") {
         try {
           const cfg = msg.payload as BenchConfig;
-          // expand ${ENV} inside url/headers/body
           cfg.url = expandEnv(cfg.url);
           if (cfg.headers) {
             Object.keys(cfg.headers).forEach(k => (cfg.headers![k] = expandEnv(cfg.headers![k])));
@@ -58,7 +58,14 @@ export function activate(context: vscode.ExtensionContext) {
     });
   });
 
-  context.subscriptions.push(disposable);
+  // Add Status Bar button
+  const statusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
+  statusBar.command = "benchbuddy.openDashboard";
+  statusBar.text = "🚀 BenchBuddy";
+  statusBar.tooltip = "Open BenchBuddy Dashboard";
+  statusBar.show();
+
+  context.subscriptions.push(disposable, statusBar);
 }
 
 function getHtml(context: vscode.ExtensionContext, webview: vscode.Webview) {
