@@ -17,9 +17,9 @@ dist/
 out/
 coverage/
 
-# VS Code
-.vscode/
-*.code-workspace
+# # VS Code
+# .vscode/
+# *.code-workspace
 
 # Environment files
 .env
