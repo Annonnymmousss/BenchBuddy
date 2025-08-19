@@ -91,13 +91,18 @@ npm run compile
 ### Project Structure
 
 ```
+│── .vscode/
+│   └── launch.json
+│── media/                 #UI
+│   ├── style.css
+│   └── script.js
 ├── src/
 │   ├── extension.ts       # VS Code activation + webview setup
 │   ├── bench.ts           # Autocannon wrapper & benchmark logic
-│   └── webview.ts         # Dashboard HTML + script
-├── media/                 # CSS & JS for dashboard UI
 ├── package.json           # Extension manifest
 └── tsconfig.json          # TypeScript config
+│── global.d.ts
+
 ```
 
 ---
