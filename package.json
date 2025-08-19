@@ -1,0 +1,35 @@
+{
+  "name": "benchbuddy",
+  "displayName": "BenchBuddy",
+  "description": "Local API benchmarking inside VS Code (autocannon under the hood)",
+  "version": "0.1.0",
+  "publisher": "your-name-or-org",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:benchbuddy.openDashboard"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "benchbuddy.openDashboard",
+        "title": "BenchBuddy: Open Dashboard"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.28",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "autocannon": "^7.14.0"
+  }
+}
